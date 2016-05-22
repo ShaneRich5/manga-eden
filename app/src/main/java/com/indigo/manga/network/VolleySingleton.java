@@ -3,6 +3,7 @@ package com.indigo.manga.network;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
+import android.text.TextUtils;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,6 +17,7 @@ import com.android.volley.toolbox.Volley;
  * Created by Shane on 5/22/2016.
  */
 public class VolleySingleton {
+    private static final String TAG = VolleySingleton.class.getSimpleName();
     private static VolleySingleton mInstance;
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
@@ -58,8 +60,14 @@ public class VolleySingleton {
         return mRequestQueue;
     }
 
-    public <T> void addToRequestQueue(Request<T> req) {
-        getRequestQueue().add(req);
+    public <T> void addToRequestQueue(Request<T> request, String tag) {
+        request.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
+        getRequestQueue().add(request);
+    }
+
+    public <T> void addToRequestQueue(Request<T> request) {
+        request.setTag(TAG);
+        getRequestQueue().add(request);
     }
 
     public ImageLoader getImageLoader() {
