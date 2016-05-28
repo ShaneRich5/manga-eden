@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Manga</string>
     <string name="thumbnail_description">Manga thumbnail image</string>
+    <string name="title_activity_details">DetailsActivity</string>
+    <string name="manga_banner_image">Manga banner image</string>
 </resources>

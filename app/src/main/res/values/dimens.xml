@@ -26,4 +26,7 @@
     <dimen name="item_list_row">72dp</dimen>
     <dimen name="column_image_width">72dp</dimen>
     <dimen name="column_image_side_padding">16dp</dimen>
+
+    <dimen name="collapsing_toolbar_start">48dp</dimen>
+    <dimen name="collapsing_toolbar_end">64dp</dimen>
 </resources>
