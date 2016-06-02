@@ -6,6 +6,7 @@ import android.text.TextUtils;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public class Manga implements Parcelable {
     @SerializedName("t")
     private String title;
     @SerializedName("c") 
-    private List<String> categories;
+    private List<String> categories = new ArrayList<>();
     @SerializedName("ld")
     private String lastChapterDate;
     @SerializedName("s")

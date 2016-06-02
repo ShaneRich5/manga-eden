@@ -12,9 +12,6 @@ public class MangaApplication extends Application {
 
     public static final String TAG = MangaApplication.class.getSimpleName();
 
-    private RequestQueue mRequestQueue;
-    private ImageLoader mImageLoader;
-
     private static MangaApplication sInstance;
 
     @Override

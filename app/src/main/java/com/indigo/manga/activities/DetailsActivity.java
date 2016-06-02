@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -41,10 +42,14 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
 
-        Bundle extras = getIntent().getExtras();
-        if (null != extras) mManga = (Manga) extras.get(Manga.class.getName());
+        mManga = getIntent().getParcelableExtra(Manga.class.getName());
 
+        if (mManga != null)
+            Toast.makeText(this, "Manga ID: " + mManga.getId(), Toast.LENGTH_SHORT)
+                    .show();
         initializeToolbar();
+
+
         requestMangaDetails();
     }
 
@@ -68,7 +73,13 @@ public class DetailsActivity extends AppCompatActivity {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-        toolbar.setTitle((mManga.getAlias().isEmpty()) ? mManga.getTitle() : mManga.getAlias());
+
+        String title = "Unknown";
+
+//        if (! mManga.getAlias().isEmpty()) title = mManga.getAlias();
+//        else if (! mManga.getTitle().isEmpty()) title = mManga.getTitle();
+
+        toolbar.setTitle(title);
     }
 
     @Override
