@@ -60,7 +60,6 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MangaViewHol
 
     @Override
     public void onBindViewHolder(MangaViewHolder holder, int position) {
-        Log.i("MangaAdapter", mMangaList.get(position).toString());
         Manga currentManga = mMangaList.get(position);
         holder.mTextViewTitle.setText(currentManga.getTitle());
         Glide.with(mContext)

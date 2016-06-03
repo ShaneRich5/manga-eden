@@ -8,13 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -26,9 +22,7 @@ import com.indigo.manga.network.VolleySingleton;
 import com.indigo.manga.utils.Constants;
 import com.indigo.manga.views.DividerItemDecoration;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -37,13 +31,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MangaListActivity extends AppCompatActivity {
 
     @BindView(R.id.coordinator_main) CoordinatorLayout coordinatorMain;
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.recycler_manga) RecyclerView recyclerManga;
 
-    public static final String TAG = MainActivity.class.getSimpleName();
+    public static final String TAG = MangaListActivity.class.getSimpleName();
     private static String requestTag = "manga_list";
     private MangaAdapter mAdapter;
     private int pagesLoaded = 0;
@@ -51,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_manga_list);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         setupRecyclerView();
@@ -81,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new MangaAdapter(new ArrayList<>(), this, v -> {
             int position = recyclerManga.getChildLayoutPosition(v);
             Manga manga = mAdapter.getManga(position);
-            startActivity(new Intent(MainActivity.this, DetailsActivity.class)
+            startActivity(new Intent(MangaListActivity.this, DetailsActivity.class)
                     .putExtra(Manga.class.getName(), manga));
         });
 
@@ -107,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.d(TAG, error.getMessage());
                         });
 
-                VolleySingleton.getInstance(MainActivity.this).addToRequestQueue(request);
+                VolleySingleton.getInstance(MangaListActivity.this).addToRequestQueue(request);
             }
         });
     }
